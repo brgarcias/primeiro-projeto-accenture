@@ -1,5 +1,12 @@
-<app-header></app-header>
+<app-header [title]="title"></app-header>
 
-<app-home></app-home>
+<app-exercicio-data-binding
+(clicado)="eventoRecebido($event)"
+[initialValue2]="initialValue2"
+(clicadoMenos)="eventoMenos($event)"
+(clicadoMais)="eventoMais($event)"
+>
+
+</app-exercicio-data-binding>
 
 <app-footer></app-footer>

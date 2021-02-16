@@ -1,0 +1,29 @@
+<!-- EXERCICIO CONTADOR -->
+<button (click)="onClickMenos($event)">Menos</button>
+<br>
+<br>
+<input type="text" [value]="initialValue2">
+<br>
+<br>
+<button (click)="onClickMais($event)">Mais</button>
+<br>
+<br>
+<!-- EXEMPLOS DE EVENT BINDING -->
+
+<button (click)="onClick($event)" (mouseenter)="passouMouse()">
+    Clique em mim!
+</button>
+<br>
+<input type="text" [value]="valorDoInput" (keyup)="digitouAlgo($event)">
+<br>
+Valor do Input: {{valorDoInput}}
+<br>
+<br>
+<hr>
+<br>
+<!-- EXEMPLOS DE PROPERTY BINDING-->
+<br>
+<input type="text" [value]="initialValue">
+<br>
+<br>
+<img [src]="imageURL" alt="">
