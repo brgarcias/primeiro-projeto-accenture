@@ -9,8 +9,9 @@ export class ExercicioDataBindingComponent implements OnInit {
 
   @Input() initialValue2 = 2;
   @Output() clicado = new EventEmitter
-  @Output() clicadoMenos = new EventEmitter
-  @Output() clicadoMais = new EventEmitter
+  @Output() initialValue2Change = new EventEmitter
+  // @Output() clicadoMenos = new EventEmitter
+  // @Output() clicadoMais = new EventEmitter
 
   initialValue = "Valor Inicial";
   imageURL = 'https://super.abril.com.br/wp-content/uploads/2019/04/si_cachorroinstagram_home.png';
@@ -22,11 +23,11 @@ export class ExercicioDataBindingComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onClick($event:any) {
+  onClick($event: any) {
     console.log('clicou!', $event);
   }
 
-  digitouAlgo($event:any) {
+  digitouAlgo($event: any) {
     this.valorDoInput = $event.target.value;
     console.log($event);
   }
@@ -35,19 +36,19 @@ export class ExercicioDataBindingComponent implements OnInit {
     console.log('alguem passou o mouse!');
   }
 
-  onClickButtonEmissor($event:any) {
+  onClickButtonEmissor($event: any) {
     console.log('Devo emitir informações para o component pai!');
     this.clicado.emit($event);
   }
 
-  onClickMenos($event:any) {
-    console.log('decrementado pelo filho!')
-    this.clicadoMenos.emit($event);
+  onClickMenos($event: any) {
+    this.initialValue2--;
+    this.initialValue2Change.emit(this.initialValue2);
   }
 
-  onClickMais($event:any) {
-    console.log('incrementado pelo filho!')
-    this.clicadoMais.emit($event);
+  onClickMais($event: any) {
+    this.initialValue2++;
+    this.initialValue2Change.emit(this.initialValue2);
   }
 
 }

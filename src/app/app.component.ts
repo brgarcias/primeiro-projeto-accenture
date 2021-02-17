@@ -16,14 +16,4 @@ export class AppComponent {
   eventoRecebido($event: any) {
     console.log('AppComponent: EVENTO RECEBIDO!', $event);
   }
-
-  eventoMenos($event: any) {
-    this.initialValue2--;
-    console.log('decrementado pelo pai: ', this.initialValue2);
-  }
-
-  eventoMais($event: any) {
-    this.initialValue2++;
-    console.log('incrementado pelo pai: ', this.initialValue2);
-  }
 }
