@@ -12,6 +12,14 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('ngOnInit')
   }
 
+  ngAfterViewInit() {
+    console.log('ngAfterViewInit')
+  }
+
+  ngOnDestroy() {
+    console.log('ngOnDestroy')
+  }
 }
