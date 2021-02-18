@@ -49,3 +49,21 @@
         {{ first }} - {{ index + 1 }} - {{ carro.placa }} - {{ carro.cor }} - {{ last }}
     </li>
 </ul>
+
+<br>
+<br>
+
+<h2>Resolvendo Exercício</h2>
+
+<ul>
+    <li *ngFor="let meme of this.MEMES_AGRUPADOS_POR_CATEGORIA;">
+        <h2> {{ meme.categoria }} </h2>
+        <p *ngFor="let imagens of this.meme.memes; even as even">
+            {{even}}
+            <img [src]="PREFIXO_IMAGEM + imagens.imagemURL" alt="Exemplos Memes" *ngIf="even; else evenBlock">
+            <ng-template #evenBlock>
+                <span>PAR</span>
+            </ng-template>
+        </p>
+    </li>
+</ul>

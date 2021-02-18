@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { MEMES_AGRUPADOS_POR_CATEGORIA } from './exercicio.diretivas.constants';
+
 @Component({
   selector: 'app-exercicio-diretivas',
   templateUrl: './exercicio-diretivas.component.html',
@@ -37,4 +39,10 @@ export class ExercicioDiretivasComponent {
     placa: 'DPA-9030',
     cor: 'Vermelgp'
   }];
+
+
+  MEMES_AGRUPADOS_POR_CATEGORIA = MEMES_AGRUPADOS_POR_CATEGORIA;
+
+  PREFIXO_IMAGEM = 'https://raw.githubusercontent.com/vitorfgsantos/angular-memes-diretivas/master/images';
+
 }
