@@ -12,6 +12,9 @@ import { ExercicioNgclassComponent } from './shared/components/exercicio-ngclass
 import { ExercicioPipesComponent } from './shared/components/exercicio-pipes/exercicio-pipes.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { HeaderComponent } from './shared/components/header/header.component';
+import { LoginComponent } from './login/login.component';
+import { ExtratoComponent } from './extrato/extrato.component';
+import { NaoEncontradoComponent } from './nao-encontrado/nao-encontrado.component';
 
 registerLocaleData(localBr, 'pt')
 
@@ -24,7 +27,10 @@ registerLocaleData(localBr, 'pt')
     ExercicioDataBindingComponent,
     ExercicioDiretivasComponent,
     ExercicioNgclassComponent,
-    ExercicioPipesComponent
+    ExercicioPipesComponent,
+    LoginComponent,
+    ExtratoComponent,
+    NaoEncontradoComponent
   ],
   imports: [
     BrowserModule,
