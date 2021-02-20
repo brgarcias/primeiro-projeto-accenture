@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { finalize, take } from 'rxjs/operators';
 
-import { Contatos } from './contato.interfaces';
-import { ContatoService } from './contato.service';
+import { Contatos } from '../contato.interfaces';
+import { ContatoService } from '../contato.service';
 
 @Component({
   selector: 'app-contato',

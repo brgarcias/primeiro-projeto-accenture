@@ -2,9 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { ContatoRoutingModule } from './contato-routing.module';
-import { ContatoComponent } from './contato.component';
 import { DetalhesContatoComponent } from './detalhes-contato/detalhes-contato.component';
-
+import { ContatoComponent } from './listar-contatos/contato.component';
 
 @NgModule({
   declarations: [
