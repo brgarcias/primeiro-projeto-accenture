@@ -1,26 +1,35 @@
 import { Injectable } from '@angular/core';
-import { of, throwError, timer } from 'rxjs';
-import { delay, mergeMap } from 'rxjs/operators';
+import { Observable, of, throwError, timer } from 'rxjs';
+import { delay, mergeMap, tap } from 'rxjs/operators';
+
+import { AuthService } from '../shared/services/auth/auth.service';
+import { LoginResponse } from './login.interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+  ) { }
 
-  logged(email: string, password: string) {
+  logged(email: string, password: string): Observable<LoginResponse> {
 
     if (email === 'bruno-151299@hotmail.com' && password === '123456') {
       return of({
         user: {
           name: 'Bruno',
-          lasName: 'Garcia',
+          lastName: 'Garcia',
           email: 'bruno-151299@hotmail.com',
         },
         token: 'aFGFS1342awGREGbdeGRE124JUYKwfwb'
       }).pipe(
-        delay(2000)
+        delay(2000),
+        tap(response => {
+          this.authService.setUser(response.user);
+          this.authService.setToken(response.token);
+        })
       )
     }
 

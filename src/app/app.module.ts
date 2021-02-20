@@ -7,8 +7,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ContatoComponent } from './contato/contato.component';
-import { DetalhesContatoComponent } from './contato/detalhes-contato/detalhes-contato.component';
 import { ExtratoComponent } from './extrato/extrato.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -24,8 +22,6 @@ registerLocaleData(localBr, 'pt')
     LoginComponent,
     ExtratoComponent,
     NaoEncontradoComponent,
-    ContatoComponent,
-    DetalhesContatoComponent
   ],
   imports: [
     BrowserModule,
