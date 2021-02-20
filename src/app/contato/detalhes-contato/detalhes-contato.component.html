@@ -1,0 +1,22 @@
+<div class="container text-center p-5">
+
+    <div *ngIf="isLoading && !isError" class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+
+    <div *ngIf="isError">
+        <h2>Deu erro :(</h2>
+        <button class="btn btn-success mt-3" (click)="loadingContacts()">Tentar Novamente</button>
+    </div>
+
+    <div *ngIf="!isLoading && !isError">
+        <p>Nome: {{ contato.nome }}</p>
+        <p>CPF: {{ contato.cpf }}</p>
+        <p>Banco: {{ contato.banco }}</p>
+        <p>Agência: {{ contato.ag }}</p>
+        <p>Conta Corrente: {{ contato.cc }}</p>
+        <button class="btn btn-primary" (click)="back()">
+            Voltar
+        </button>
+    </div>
+</div>

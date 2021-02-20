@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ContatoComponent } from './contato/contato.component';
+import { DetalhesContatoComponent } from './contato/detalhes-contato/detalhes-contato.component';
 import { ExtratoComponent } from './extrato/extrato.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -19,6 +20,9 @@ const routes: Routes = [{
 }, {
   path: 'contato',
   component: ContatoComponent
+}, {
+  path: 'contato/:id',
+  component: DetalhesContatoComponent
 }, {
   path: '',
   redirectTo: 'home',

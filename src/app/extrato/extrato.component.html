@@ -23,6 +23,7 @@
                 <th>Descricao</th>
                 <th>Valor</th>
                 <th>Categoria</th>
+                <th>Ações</th>
             </tr>
 
             <tr *ngFor="let item of transacoes">
@@ -31,6 +32,11 @@
                 <td>{{ item.descricao }}</td>
                 <td>{{ item.valor | currency:'BRL'}}</td>
                 <td>{{ item.categoria }}</td>
+                <td>
+                    <button class="btn btn-primary">
+                        Ver detalhes
+                    </button>
+                </td>
             </tr>
         </table>
     </div>

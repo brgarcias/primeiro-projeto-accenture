@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { finalize, take } from 'rxjs/operators';
 
 import { Contatos } from './contato.interfaces';
@@ -18,7 +19,8 @@ export class ContatoComponent implements OnInit {
   isError!: boolean;
 
   constructor(
-    private contatoService: ContatoService
+    private contatoService: ContatoService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -56,5 +58,9 @@ export class ContatoComponent implements OnInit {
   nextPage() {
     this.page++;
     this.loadingContatos();
+  }
+
+  goToDetails(idContato: string) {
+    this.router.navigate([`contato/${idContato}`]);
   }
 }

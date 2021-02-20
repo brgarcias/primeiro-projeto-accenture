@@ -24,7 +24,7 @@ export class ExtratoService {
         _page: String(page)
       }
     });
-    return timer(1500)
+    return timer(500)
       .pipe(
         mergeMap(() => api)
       )

@@ -1,5 +1,5 @@
 export interface Contatos {
-    id: number;
+    id: string;
     nome: string;
     cpf: string;
     banco: string;
