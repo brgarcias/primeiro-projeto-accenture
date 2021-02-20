@@ -1,0 +1,40 @@
+<div class="container text-center p-5">
+
+    <div *ngIf="isLoading && !isError" class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+
+    <div *ngIf="isError">
+        <h2>Deu erro :(</h2>
+        <button class="btn btn-success mt-3" (click)="loadingContatos()">Tentar Novamente</button>
+    </div>
+
+    <div *ngIf="!isLoading && !isError">
+
+        <div class="row mb-5 justify-content-between">
+            <button class="btn btn-primary" (click)="previousPage()" [disabled]="page === 1">Página anterior</button>
+            <p>Página atual: {{ page }}</p>
+            <button class="btn btn-primary" (click)="nextPage()">Próxima página</button>
+        </div>
+
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Banco</th>
+                <th>Agência</th>
+                <th>Conta Corrente</th>
+            </tr>
+
+            <tr *ngFor="let item of contatos">
+                <td>{{ item.id }}</td>
+                <td>{{ item.nome }}</td>
+                <td>{{ item.cpf }}</td>
+                <td>{{ item.banco}}</td>
+                <td>{{ item.ag }}</td>
+                <td>{{ item.cc }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
