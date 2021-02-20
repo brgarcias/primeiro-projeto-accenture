@@ -10,10 +10,11 @@
     </div>
 
     <div *ngIf="!isLoading && !isError">
-
-        <button class="btn btn-primary" (click)="previousPage()" [disabled]="page === 1">Página anterior</button>
-        <p>Página atual: {{ page }}</p>
-        <button class="btn btn-primary" (click)="nextPage()">Próxima página</button>
+        <div class="row mb-5 justify-content-between">
+            <button class="btn btn-primary" (click)="previousPage()" [disabled]="page === 1">Página anterior</button>
+            <p>Página atual: {{ page }}</p>
+            <button class="btn btn-primary" (click)="nextPage()">Próxima página</button>
+        </div>
 
         <table class="table">
             <tr>
