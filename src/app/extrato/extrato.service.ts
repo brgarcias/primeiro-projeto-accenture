@@ -17,9 +17,13 @@ export class ExtratoService {
     private http: HttpClient
   ) { }
 
-  getTransacoes() {
+  getTransacoes(page: number) {
     // const error = throwError(new Error('Erro genérico.'))
-    const api = this.http.get<Transacao[]>(`${this.API_URL}/transacoes`);
+    const api = this.http.get<Transacao[]>(`${this.API_URL}/transacoes`, {
+      params: {
+        _page: String(page)
+      }
+    });
     return timer(1500)
       .pipe(
         mergeMap(() => api)

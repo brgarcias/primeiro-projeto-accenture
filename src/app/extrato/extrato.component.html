@@ -9,21 +9,28 @@
         <button class="btn btn-success mt-3" (click)="loadingExtrato()">Tentar Novamente</button>
     </div>
 
-    <table class="table" *ngIf="!isLoading && !isError">
-        <tr>
-            <th>ID</th>
-            <th>Data</th>
-            <th>Descricao</th>
-            <th>Valor</th>
-            <th>Categoria</th>
-        </tr>
+    <div *ngIf="!isLoading && !isError">
 
-        <tr *ngFor="let item of transacoes">
-            <td>{{ item.id }}</td>
-            <td>{{ item.data | date }}</td>
-            <td>{{ item.descricao }}</td>
-            <td>{{ item.valor | currency:'BRL'}}</td>
-            <td>{{ item.categoria }}</td>
-        </tr>
-    </table>
+        <button class="btn btn-primary" (click)="previousPage()" [disabled]="page === 1">Página anterior</button>
+        <p>Página atual: {{ page }}</p>
+        <button class="btn btn-primary" (click)="nextPage()">Próxima página</button>
+
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Data</th>
+                <th>Descricao</th>
+                <th>Valor</th>
+                <th>Categoria</th>
+            </tr>
+
+            <tr *ngFor="let item of transacoes">
+                <td>{{ item.id }}</td>
+                <td>{{ item.data | date }}</td>
+                <td>{{ item.descricao }}</td>
+                <td>{{ item.valor | currency:'BRL'}}</td>
+                <td>{{ item.categoria }}</td>
+            </tr>
+        </table>
+    </div>
 </div>

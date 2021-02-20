@@ -12,6 +12,7 @@ import { ExtratoService } from './extrato.service';
 export class ExtratoComponent implements OnInit {
 
   transacoes!: Transacao[];
+  page = 1;
 
   isLoading!: boolean;
   isError!: boolean;
@@ -27,7 +28,7 @@ export class ExtratoComponent implements OnInit {
   loadingExtrato() {
     this.isLoading = true;
     this.isError = false;
-    this.extratoService.getTransacoes()
+    this.extratoService.getTransacoes(this.page)
       .pipe(
         take(1),
         finalize(() => this.isLoading = false)
@@ -47,4 +48,13 @@ export class ExtratoComponent implements OnInit {
     this.isError = true;
   }
 
+  previousPage() {
+    this.page--;
+    this.loadingExtrato();
+  }
+
+  nextPage() {
+    this.page++;
+    this.loadingExtrato();
+  }
 }
