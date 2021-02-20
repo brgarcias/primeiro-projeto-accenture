@@ -1,32 +1,29 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { timer } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+
+import { Transacao } from './extrato.interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExtratoService {
 
-  constructor() { }
+  API_URL = environment.API_URL;
+
+  constructor(
+    private http: HttpClient
+  ) { }
 
   getTransacoes() {
-    // TODO: CONSULTAR UMA API VERDADEIRA
-    return [{
-      id: 1,
-      data: '2020-02-04T13:00:24.744Z',
-      descricao: 'Salário',
-      valor: 3500,
-      categoria: 'Sálario'
-    }, {
-      id: 2,
-      data: '2020-02-05T14:21:24.744Z',
-      descricao: 'Sapato',
-      valor: -235.99,
-      categoria: 'Verde'
-    }, {
-      id: 3,
-      data: '2020-01-29T15:00:24.744Z',
-      descricao: 'Notebook',
-      valor: -10231.99,
-      categoria: 'Eletrônicos'
-    }];
+    // const error = throwError(new Error('Erro genérico.'))
+    const api = this.http.get<Transacao[]>(`${this.API_URL}/transacoes`);
+    return timer(1500)
+      .pipe(
+        mergeMap(() => api)
+      )
+    
   }
 }
