@@ -75,11 +75,13 @@ export class ContatoComponent implements OnInit {
   }
 
   onSuccessDelete(idContato: string) {
-    this.toastr.success('Contato deletado com sucesso.', 'Sucesso!')
+    this.toastr.success('Contato deletado com sucesso.', 'Sucesso!');
     this.contatos = this.contatos.filter(contato => contato.id !== idContato);
   }
 
-  onErrorDelete() {
+  onErrorDelete() {}
 
+  newContact() {
+    this.router.navigate(['contato/novo']);
   }
 }
