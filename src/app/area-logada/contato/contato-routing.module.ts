@@ -14,7 +14,10 @@ const routes: Routes = [{
 }, {
   path: ':id',
   component: DetalhesContatoComponent,
-},];
+}, {
+  path: ':id/editar',
+  component: NovoContatoComponent,
+}];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

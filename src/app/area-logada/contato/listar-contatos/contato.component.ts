@@ -66,6 +66,10 @@ export class ContatoComponent implements OnInit {
     this.router.navigate([`contato/${idContato}`]);
   }
 
+  editContact(idContato: string) {
+    this.router.navigate([`contato/${idContato}/editar`]);
+  }
+
   deleteContact(idContato: string) {
     this.contatoService.deleteContato(idContato)
       .subscribe(
@@ -79,7 +83,7 @@ export class ContatoComponent implements OnInit {
     this.contatos = this.contatos.filter(contato => contato.id !== idContato);
   }
 
-  onErrorDelete() {}
+  onErrorDelete() { }
 
   newContact() {
     this.router.navigate(['contato/novo']);

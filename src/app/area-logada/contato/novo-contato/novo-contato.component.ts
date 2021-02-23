@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { finalize, take } from 'rxjs/operators';
 
+import { Contatos } from '../contato.interfaces';
 import { ContatoService } from '../contato.service';
 
 @Component({
@@ -13,22 +15,60 @@ import { ContatoService } from '../contato.service';
 export class NovoContatoComponent implements OnInit {
 
   contatoForm!: FormGroup;
+  isLoading!: boolean;
+  isError!: boolean;
+  idContato!: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private contatoService: ContatoService,
     private toastr: ToastrService,
     private router: Router,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
+    this.initializeForm();
+    this.idContato = this.route.snapshot.paramMap.get('id');
+
+    if (this.isEditing()) {
+      this.loadingContacts();
+    }
+  }
+
+  initializeForm() {
     this.contatoForm = this.formBuilder.group({
-      name: ['', Validators.required],
+      nome: ['', Validators.required],
       cpf: ['', Validators.required],
       ag: ['', [Validators.required, Validators.minLength(4)]],
       cc: ['', [Validators.required, Validators.minLength(5)]],
-      bank: ['', Validators.required],
+      banco: ['', Validators.required],
     })
+  }
+
+  loadingContacts() {
+    this.isLoading = true;
+    this.isError = false;
+
+    this.idContato = this.route.snapshot.paramMap.get('id');
+    this.contatoService.getContato(String(this.idContato))
+      .pipe(
+        take(1),
+        finalize(() => this.isLoading = false)
+      )
+      .subscribe(
+        response => this.onSuccessGetContact(response),
+        error => this.onErrorGetContact(error)
+      )
+  }
+
+  onSuccessGetContact(response: Contatos) {
+    this.isError = false;
+    this.contatoForm.patchValue(response)
+  }
+
+  onErrorGetContact(error: any) {
+    this.isError = true;
   }
 
   validadeAllForms() {
@@ -43,8 +83,15 @@ export class NovoContatoComponent implements OnInit {
       this.validadeAllForms();
       return;
     }
-    this.saveContact();
+    if (this.isEditing()) {
+      this.updateContact();
+      return;
+    }
+
+    this.createContact();
   }
+
+  isEditing = () => Boolean(this.idContato)
 
   showError(controlName: string) {
     if (!this.contatoForm.get(controlName)) {
@@ -53,20 +100,37 @@ export class NovoContatoComponent implements OnInit {
     return this.contatoForm.get(controlName)?.invalid && this.contatoForm.get(controlName)?.touched
   }
 
-  saveContact() {
+  createContact() {
     this.contatoService.createContato(this.contatoForm.value)
       .subscribe(
-        response => this.onSuccessSaveContact(),
-        error => this.onErrorSaveContact()
+        response => this.onSuccessCreateContact(),
+        error => this.onErrorCreateContact()
       )
   }
 
-  onSuccessSaveContact() {
+  onSuccessCreateContact() {
     this.router.navigate(['contato']);
     this.toastr.success('Contato criado com sucesso.', 'Sucesso!');
   }
 
-  onErrorSaveContact() {
-    this.toastr.error('Alguma coisa deu errado.', 'Erro!');
+  onErrorCreateContact() {
+    this.toastr.error('Alguma coisa deu errado ao criar o contato.', 'Erro!');
+  }
+
+  updateContact() {
+    this.contatoService.updateContato(this.idContato, this.contatoForm.value)
+      .subscribe(
+        response => this.onSuccessUpdateContact(),
+        error => this.onErrorUpdateContact()
+      )
+  }
+
+  onSuccessUpdateContact() {
+    this.router.navigate(['contato']);
+    this.toastr.success('Contato alterado com sucesso.', 'Sucesso!');
+  }
+
+  onErrorUpdateContact() {
+    this.toastr.error('Alguma coisa deu errado ao alterar o contato.', 'Erro!');
   }
 }
