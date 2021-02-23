@@ -26,8 +26,11 @@
             <tr *ngFor="let item of contatos">
                 <td>{{ item.nome }}</td>
                 <td>
-                    <button class="btn btn-primary" (click)="goToDetails(item.id)">
+                    <button class="btn btn-primary mr-3" (click)="goToDetails(item.id)">
                         Ver detalhes
+                    </button>
+                    <button class="btn btn-danger" (click)="deleteContact(item.id)">
+                        Deletar
                     </button>
                 </td>
             </tr>
