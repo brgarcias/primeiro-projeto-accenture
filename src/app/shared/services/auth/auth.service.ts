@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Usuario } from '../../interfaces/usuario.interface';
 
@@ -11,7 +12,9 @@ export class AuthService {
   user!: Usuario;
   token!: string;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
 
   setUser(user: Usuario) {
@@ -50,6 +53,15 @@ export class AuthService {
 
   isLogged() {
     return this.getUser() && this.getToken ? true : false;
+  }
+
+  logout() {
+    const y: string = null as any;
+    const x: Usuario = null as any;
+    this.user = x;
+    this.token = y;
+    localStorage.clear();
+    this.router.navigate(['login']);
   }
 }
 

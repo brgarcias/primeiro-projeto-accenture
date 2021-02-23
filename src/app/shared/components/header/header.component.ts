@@ -1,25 +1,21 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
   @Input() title = "Texto Padrão!";
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+  ) { }
 
-  ngOnInit(): void {
-    console.log('ngOnInit')
-  }
-
-  ngAfterViewInit() {
-    console.log('ngAfterViewInit')
-  }
-
-  ngOnDestroy() {
-    console.log('ngOnDestroy')
+  logout() {
+    this.authService.logout();
   }
 }

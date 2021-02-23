@@ -1,18 +1,20 @@
 <header class="header">
     <h1 class="header__title">{{title}}</h1>
-    <nav>
+    <nav class="mt-3">
         <ul class="nav-bar-list">
             <li>
-                <a routerLink="home" routerLinkActive="active">Home</a>
+                <a routerLink="/home" routerLinkActive="active">Home</a>
             </li>
             <li>
-                <a routerLink="extrato" routerLinkActive="active">Extrato</a>
+                <a routerLink="/extrato" routerLinkActive="active">Extrato</a>
             </li>
             <li>
-                <a routerLink="contato" routerLinkActive="active">Contato</a>
+                <a routerLink="/contato" routerLinkActive="active">Contato</a>
             </li>
             <li>
-                <a routerLink="login" routerLinkActive="active">Login</a>
+                <button class="btn btn-outline-dark" (click)="logout()">
+                    Logout
+                </button>
             </li>
         </ul>
     </nav>
