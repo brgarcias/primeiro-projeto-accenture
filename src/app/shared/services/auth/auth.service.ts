@@ -48,7 +48,7 @@ export class AuthService {
       this.token = tokenLocale;
       return this.token;
     }
-    return null;
+    return this.token;
   }
 
   isLogged() {
