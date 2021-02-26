@@ -26,7 +26,7 @@
                 [ngClass]="showError('cpf') ? 'is-invalid' : ''">
         </div>
 
-        <div formGroupName="dadosBancarios">
+        <!-- <div formGroupName="dadosBancarios"> -->
             <div class="form-group">
                 <label for="banco">Banco</label>
                 <input type="text" class="form-control" id="banco" placeholder="Banco" formControlName="banco"
@@ -44,7 +44,7 @@
                 <input type="text" class="form-control" id="cc" placeholder="Conta Corrente" formControlName="cc"
                     [ngClass]="showError('dadosBancarios.cc') ? 'is-invalid' : ''">
             </div>
-        </div>
+        <!-- </div> -->
 
         <button class="btn btn-success" (click)="onSubmit()">
             {{ isEditing() ? 'Salvar Contato' : 'Criar Contato'}}

@@ -1,34 +1,40 @@
-<div class="text-center">
-    <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="form-signin pt-5">
-        <div class="p-2">
-            <input class="form-control" placeholder="E-mail" type="email" name="email"
-                [ngClass]="showError('email', form) ? 'is-invalid' : ''" [(ngModel)]="email" email required #emailInput>
-            <div *ngIf="showError('email', form)" class="invalid-feedback">
-                E-mail Inválido
-            </div>
-        </div>
-        <div class="p-2">
-            <input class="form-control" placeholder="Password" type="password" name="password"
-                [ngClass]="showError('password', form) ? 'is-invalid' : ''" [(ngModel)]="password" required
-                #passwordInput>
-            <div *ngIf="showError('password', form)" class="invalid-feedback">
-                Password Inválido
-            </div>
-        </div>
+<div class="text-center jumbotron container mt-5">
 
-        <div *ngIf="isError">
-            <p>Usuário ou senha inválidos!</p>
-        </div>
+  <h1 class="display-4">Seja bem vindo!</h1>
+  <p class="lead">Antes de tudo, realize o login abaixo, por gentileza.</p>
+  <hr class="my-4">
+
+  <img [src]="imagePath" class="rounded mx-auto d-block" alt="Login - Bruno Garcia" title="Login - Bruno Garcia APP">
+
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="form-signin pt-5">
+    <div class="p-2">
+      <input class="form-control" placeholder="E-mail" type="email" name="email"
+        [ngClass]="showError('email', form) ? 'is-invalid' : ''" [(ngModel)]="email" email required #emailInput>
+      <div *ngIf="showError('email', form)" class="invalid-feedback">
+        E-mail Inválido
+      </div>
+    </div>
+    <div class="p-2">
+      <input class="form-control" placeholder="Password" type="password" name="password"
+        [ngClass]="showError('password', form) ? 'is-invalid' : ''" [(ngModel)]="password" required #passwordInput>
+      <div *ngIf="showError('password', form)" class="invalid-feedback">
+        Password Inválido
+      </div>
+    </div>
+
+    <div *ngIf="isError">
+      <p>Usuário ou senha inválidos!</p>
+    </div>
 
 
-        <div class="p-2">
-            <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="isLoading">
-                Entrar
-            </button>
-        </div>
-    </form>
-    
-<div *ngIf="isLoading && !isError" class="spinner-border" role="status">
+    <div class="p-2">
+      <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="isLoading">
+        Entrar
+      </button>
+    </div>
+  </form>
+
+  <div *ngIf="isLoading && !isError" class="spinner-border" role="status">
     <span class="sr-only">Loading...</span>
-</div>
+  </div>
 </div>
